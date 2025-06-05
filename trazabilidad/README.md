@@ -172,10 +172,9 @@ Para crear un vector en R, usamos la función `c()`, que permite concatenar elem
 
 ```r
 
-
 x = c(2, 5, 101, 34, 22, 0, 13, 4, 77, 3, 5, 75, 100, 43)
 
-````
+```
 
 Este comando crea un vector llamado `x` con 14 elementos numéricos.
 
@@ -185,8 +184,8 @@ Este comando crea un vector llamado `x` con 14 elementos numéricos.
 
 Una vez creado el vector, podemos ver su contenido simplemente escribiendo su nombre:
 
-```r
 
+```r
 
 x
 
@@ -232,7 +231,8 @@ Para poder analizar los datos de forma más efectiva, muchas veces necesitamos o
 ```r
 
 sort(x)
-````
+
+```
 
 Ordena los elementos del vector `x` de menor a mayor.
 
@@ -247,9 +247,12 @@ sort(c(23, 32, 4, 1, 399, -4))
 ```
 Devuelve:
 
-```-4   1   4  23  32 399
+```
+
+-4   1   4  23  32 399
 
 ```
+
 ```r
 
 sort(c("azul", "verde", "rojo", "blanco"))
@@ -257,7 +260,9 @@ sort(c("azul", "verde", "rojo", "blanco"))
 ```
 Devuelve:
 
-```"azul" "blanco" "rojo" "verde"
+```
+
+"azul" "blanco" "rojo" "verde"
 
 ```
 > En el caso de cadenas de texto, el orden es alfabético.
@@ -292,7 +297,7 @@ A menudo, cuando trabajamos con grandes vectores o listas, queremos echar un vis
 ```r
 
 head(x)
-````
+```
 
 Donde `x` es un conjunto de elementos. Por defecto, `head()` muestra los **primeros 6 elementos** del vector.
 
@@ -379,7 +384,7 @@ En **`igraph`**, esto puede hacerse fácilmente con la función `as_undirected()
 
 # Convertimos el grafo dirigido 'net' a uno no dirigido
 g_nodirigido <- igraph::as_undirected(net, mode = 'collapse')
-````
+```
 
 🔁 También podrías encontrar este código con otra variable para ilustrar la misma idea:
 
@@ -407,7 +412,8 @@ Utilizaremos la función `read.csv()` de R, que nos permite leer un archivo de t
 ```r
 
 grafo_enCSV <- read.csv("directorios\\nombreFichero.csv")
-````
+
+```
 
 🔁 **Ejemplo real aplicado a nuestro caso**:
 
@@ -439,7 +445,8 @@ Una vez que hemos cargado el fichero CSV en memoria con la variable `grafo_enCSV
 ```r
 
 g <- graph_from_data_frame(d = grafo_enCSV, directed = FALSE)
-````
+
+```
 
 Con esta instrucción:
 
@@ -462,7 +469,8 @@ En este apartado aprenderemos a extraer información básica pero muy útil sobr
 ```r
 
 V(g)
-````
+
+```
 
 Este comando nos permite acceder a los **vértices** del grafo `g`.
 Devuelve una lista con los objetos de tipo vértice, que contienen tanto su nombre como otras propiedades asociadas.
@@ -536,7 +544,8 @@ El **grado** de un nodo mide cuántas aristas (conexiones) tiene.
 ```r
 
 degree(g)
-````
+
+```
 
 Esto devolverá un vector con el número de conexiones que tiene cada nodo. Es una forma rápida de saber quién está más "conectado".
 
@@ -620,7 +629,8 @@ Esta medida **solo se aplica a grafos no dirigidos**.
 ```r
 
 eigen_centrality(g)$vector
-````
+
+```
 
 Este comando devuelve un vector con los valores de centralidad del vector propio para cada nodo del grafo `g`.
 
@@ -684,7 +694,8 @@ Un nodo actúa como **hub** cuando apunta a muchos nodos que, a su vez, son impo
 ```r
 
 hits_scores(g)$hub
-````
+
+```
 
 📌 *Donde `g` es el grafo.*
 📤 El resultado es un vector con la puntuación de hub para cada nodo del grafo.
@@ -757,7 +768,8 @@ El **diámetro** de un grafo es la distancia más larga (en número de aristas o
 ```r
 
 diameter(g)
-````
+
+```
 
 Este comando calcula por defecto el diámetro del grafo `g`, considerando las direcciones y los pesos si los hubiera.
 
@@ -813,7 +825,8 @@ La **distancia media** (o _average path length_) es la media de todas las distan
 ```r
 
 mean_distance(g)
-````
+
+```
 
 Este comando calcula la distancia media teniendo en cuenta si el grafo es dirigido o no.
 
@@ -868,7 +881,8 @@ En este apartado vamos a detectar y visualizar las comunidades del grafo utiliza
 
 # Convertimos el grafo a no dirigido si no lo era ya.
 g_nodirigido <- igraph::as_undirected(g, mode = 'collapse')
-````
+
+```
 
 El modo `'collapse'` fusiona aristas múltiples entre los mismos nodos, sumando sus pesos si existieran.
 
@@ -912,7 +926,8 @@ El objetivo en este caso es detectar comunidades dentro del grafo utilizando el 
 ```r
 
 ceb <- cluster_edge_betweenness(g_nodirigido)
-````
+
+```
 
 Esta instrucción calcula la partición del grafo basada en las aristas con mayor intermediación. Cuanto más alto sea el *betweenness* de una arista, más probable es que conecte diferentes comunidades. Eliminando esas aristas, el algoritmo va separando el grafo en grupos más cohesivos internamente.
 
@@ -965,7 +980,8 @@ lado_luminoso <- c("ANAKIN","LUKE","OBI-WAN","C-3PO","R2-D2","CHEWBACCA","HAN", 
 "MON MOTHMA","BERU","JANSON","BRAVO THREE","TARPALS","CLIEGG","JOBAL","SOLA", "PLO KOON","CAPTAIN ANTILLES","CAMIE","DODONNA","DERLIN","RABE","REY","POE")
 
 neutral <- c("FODE/BEED","WATTO","SIO BIBBLE","JABBA","MAD MADDA","TAUN WE", "TC-14","KITSTER","DACK","SEBULBA","JIRA","VALORUM","WALD","GREEDO", "ORN FREE TAA","TION MEDON","ON MEDON","BIB FORTUNA","BOUSHH")
-````
+
+```
 
 ---
 
@@ -1005,7 +1021,8 @@ Una vez que hemos clasificado los personajes en facciones (por ejemplo, lado lum
 
 plot(g)
 plot(g_nodirigido)
-````
+
+```
 
 Ambos comandos nos permiten visualizar el grafo completo, tanto en su versión dirigida (`g`) como no dirigida (`g_nodirigido`). En este punto, los nodos aparecerán coloreados según la asignación que hayamos hecho anteriormente para distinguir facciones.
 
@@ -1040,7 +1057,8 @@ plot(g,
      edge.arrow.mode = "-",            # Se eliminan las flechas (ideal para grafos no dirigidos)
      edge.color = "grey20"             # Las aristas se dibujarán en un gris oscuro
 )
-````
+
+```
 
 > Este tipo de personalización resulta especialmente útil cuando tenemos muchos nodos o aristas, ya que nos permite reducir el ruido visual y resaltar la estructura del grafo.
 
@@ -1071,7 +1089,8 @@ plot( g,
       edge.arrow.mode = "-",
       edge.color = "grey20"
 )
-````
+
+```
 
 > 📌 **Sugerencia:** cambia `layout_on_sphere` por otras alternativas (como `layout_with_kk` o `layout_in_circle`) para observar cómo varía la estructura visual del grafo.
 > Esto puede ayudarte a **destacar patrones, comunidades o conexiones relevantes** dependiendo del objetivo del análisis.
@@ -1093,7 +1112,8 @@ Primero almacenamos en una variable la distribución generada por el algoritmo:
 ```r
 
 dist <- igraph::layout_with_fr(g)
-````
+
+```
 
 Aquí usamos el grafo `g` como entrada para calcular las posiciones de los nodos.
 
@@ -1133,7 +1153,8 @@ Primero extraemos las aristas del grafo en forma de lista de pares (sin nombres,
 ```r
 
 e <- as_edgelist(g, names=FALSE)
-````
+
+```
 
 ---
 
@@ -1224,7 +1245,7 @@ En este ejemplo, vamos a modificar el **tamaño de los nodos** usando la métric
 ```r
 
 V(g_nodirigido)$size = closeness(g_nodirigido, mode = "out") / valor
-````
+```
 
 * La división entre `valor` es simplemente una forma de escalar visualmente los tamaños para que se ajusten bien al grafo.
 * Ese `valor` se debe ajustar de forma empírica, probando hasta encontrar una escala que resulte visualmente informativa.
@@ -1266,7 +1287,8 @@ En esta sección vamos a ajustar el **tamaño de los nodos** en función de su v
 ```r
 
 V(g_nodirigido)$size = betweenness(g_nodirigido) / valor
-````
+
+```
 
 🔧 El parámetro `valor` actúa como un **factor de escala**. Es necesario **probar con distintos valores** para encontrar una visualización adecuada y legible.
 
@@ -1326,4 +1348,3 @@ plot(g_nodirigido,
 
 ```
 🧠 **Nota:** Estas representaciones son muy útiles para identificar visualmente qué nodos son clave en la estructura de la red según distintos criterios de centralidad.
-
