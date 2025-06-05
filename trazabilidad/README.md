@@ -297,6 +297,7 @@ A menudo, cuando trabajamos con grandes vectores o listas, queremos echar un vis
 ```r
 
 head(x)
+
 ```
 
 Donde `x` es un conjunto de elementos. Por defecto, `head()` muestra los **primeros 6 elementos** del vector.
@@ -384,6 +385,7 @@ En **`igraph`**, esto puede hacerse fácilmente con la función `as_undirected()
 
 # Convertimos el grafo dirigido 'net' a uno no dirigido
 g_nodirigido <- igraph::as_undirected(net, mode = 'collapse')
+
 ```
 
 🔁 También podrías encontrar este código con otra variable para ilustrar la misma idea:
@@ -549,6 +551,15 @@ degree(g)
 
 Esto devolverá un vector con el número de conexiones que tiene cada nodo. Es una forma rápida de saber quién está más "conectado".
 
+
+¿Quieres verlo ordenado?
+
+```r
+
+sort(degree(g), decreasing = TRUE)
+
+```
+
 ---
 
 #### 🔹 4.1 Fuerza de los nodos
@@ -585,6 +596,7 @@ betweenness(g)
 Cuanto mayor sea este valor, más importante es el nodo como punto de paso en la red.
 
 ¿Quieres verlo ordenado?
+
 ```r
 
 sort(betweenness(g), decreasing = TRUE)
@@ -1210,15 +1222,14 @@ En esta sección vamos a representar el grafo incorporando:
 
 ```r
 
-plot( g,
-      ceb,                     # Información de clusters detectados
-      layout = dist2,          # Distribución refinada de nodos
-      vertex.label.color= "black",
-      vertex.label.cex= 0.75,
-      edge.arrow.size=0.25,
-      edge.arrow.mode = "-",   # Sin flechas
-      edge.color="grey20"
-      )
+plot( ceb, g,                       # Pintamos el grafo "g" con los clusters "ceb"
+      layout = dist2,              # Usamos la distribución refinada previamente calculada
+      vertex.label.color = "black",# Color del texto del nombre del nodo
+      vertex.label.cex = 0.75,     # Tamaño del texto del nodo
+      edge.arrow.size = 0.25,      # Tamaño de las flechas
+      edge.arrow.mode = "-",       # Anula la dirección de las flechas (modo no dirigido)
+      edge.color = "grey20"        # Color de las aristas
+)
 
 ```
 ---
@@ -1245,6 +1256,7 @@ En este ejemplo, vamos a modificar el **tamaño de los nodos** usando la métric
 ```r
 
 V(g_nodirigido)$size = closeness(g_nodirigido, mode = "out") / valor
+
 ```
 
 * La división entre `valor` es simplemente una forma de escalar visualmente los tamaños para que se ajusten bien al grafo.
@@ -1348,3 +1360,285 @@ plot(g_nodirigido,
 
 ```
 🧠 **Nota:** Estas representaciones son muy útiles para identificar visualmente qué nodos son clave en la estructura de la red según distintos criterios de centralidad.
+
+---
+
+## 🌐 8. Exploración de una red real: la blockchain de Sepolia
+
+Después de haber trabajado con la red de personajes de *Star Wars*, ha llegado el momento de poner a prueba lo aprendido sobre grafos y medidas de centralidad, pero esta vez con una red real: una red de transacciones de la **blockchain de Sepolia**.
+
+---
+
+### 🚀 8.1 Descarga de un fragmento de red real
+
+Vamos a utilizar un script en Node.js llamado `grafoSepolia.js`, que está diseñado para conectarse con la API pública de **Etherscan** en la red de pruebas Sepolia y descargar un subconjunto del grafo de transacciones a partir de una dirección inicial (wallet).
+
+#### 📦 Requisitos previos
+Antes de ejecutar el script, asegúrate de tener instalado:
+- Node.js
+- Una clave API gratuita de [Etherscan](https://etherscan.io/apis)
+
+---
+
+### 🔧 8.2 Personalización del script
+
+A continuación, se detallan las líneas que **debes configurar** en `grafoSepolia.js` para adaptar el script a tus necesidades:
+
+#### 1. **API Key de Etherscan**
+En esta línea debes introducir tu clave personal de Etherscan:
+
+```js
+const API_KEY = "TU_API_KEY_AQUI"; // ← Sustituye por tu API key de Etherscan
+````
+
+Esta clave es obligatoria para poder realizar peticiones a la API.
+
+#### 2. **Dirección de origen**
+
+Por defecto, el script parte de una wallet de prueba de Diego, pero puedes usar cualquier otra dirección válida de la red Sepolia:
+
+```js
+const START_ADDRESS = "0xC383d4920a1eC3D415216C5f014de6CCf86e546c"; // Dirección de origen. Wallet de prueba de Diego
+```
+
+Cambia esta dirección por otra si quieres comenzar desde un nodo diferente del grafo.
+
+#### 3. **Profundidad de exploración**
+
+Define cuántos niveles de profundidad quieres recorrer a partir de la dirección de origen. Cuanto mayor sea este número, más grande será el fragmento del grafo que se obtendrá:
+
+```js
+const DEPTH_LIMIT = 5; // Profundidad máxima de exploración
+```
+
+> ⚠️ Ojo: un valor alto puede ralentizar mucho la ejecución o generar un volumen de datos demasiado grande.
+
+#### 4. **Tiempo de espera entre peticiones**
+
+Para evitar **saturar la API de Etherscan** o recibir errores por exceso de peticiones, puedes configurar un retardo entre cada llamada:
+
+```js
+const DELAY_MS = 300; // Tiempo de espera entre peticiones en ms
+```
+
+Puedes subir este valor si observas errores de rate-limit o tiempos de respuesta muy variables.
+
+---
+
+### 🖥️ 8.3 Ejecución del script paso a paso
+
+Para ejecutar correctamente el script `grafoSepolia.js`, sigue los siguientes pasos desde la terminal:
+
+---
+
+#### ✅ Paso 1: Acceder al directorio del proyecto
+
+Abre una terminal y navega hasta la carpeta donde tengas el script `grafoSepolia.js`. Por ejemplo:
+
+```bash
+cd ruta/del/proyecto
+````
+
+---
+
+#### 📦 Paso 2: Instalar las dependencias necesarias
+
+El script utiliza librerías de Node.js como `axios` y `fs`, que deben instalarse previamente. Ejecuta:
+
+```bash
+npm install
+```
+
+Este comando instalará automáticamente las dependencias listadas en el fichero `package.json`.
+
+---
+
+#### ▶️ Paso 3: Ejecutar el script
+
+Una vez instaladas las dependencias, puedes lanzar el script con:
+
+```bash
+node grafoSepolia.js
+```
+
+---
+
+### 📁 8.4 Salida del script
+
+Al ejecutar el script, se generarán **dos ficheros CSV** dentro de la carpeta `/data/`:
+
+* `grafo_numero_transacciones.csv`:
+  Contiene las aristas del grafo donde el peso indica el **número total de transacciones** entre dos direcciones (`from → to`).
+
+* `grafo_valor_transacciones.csv`:
+  Contiene las aristas del grafo donde el peso representa la **suma del valor transferido** (en ETH) entre dos direcciones.
+
+```csv
+source,target,weight
+0x1234...,0xabcd...,2         ← número de transacciones
+0x1234...,0xabcd...,0.0471    ← valor acumulado en ETH
+```
+
+> ✅ **Recomendamos utilizar el fichero `grafo_valor_transacciones.csv`**, ya que refleja de forma más realista la magnitud económica de las interacciones en la red.
+
+---
+
+### 🔍 8.5 Exploración de los ficheros CSV generados
+
+Una vez generado el grafo, podemos abrir los ficheros CSV resultantes para observar su estructura. Puedes utilizar cualquier editor de texto, hoja de cálculo o incluso cargarlos directamente en R o Python.
+
+Los ficheros son:
+
+- `data/grafo_numero_transacciones.csv`
+- `data/grafo_valor_transacciones.csv`
+
+Ambos contienen tres columnas: `source`, `target` y `weight`, que representan los nodos de origen y destino, y el peso de la arista, respectivamente (número de transacciones o valor total transferido en ETH).
+
+#### 🧠 ¿Qué observarás?
+
+Verás algo como esto:
+
+```csv
+source,target,weight
+0x9aa1...,0xc383...,3
+0x7df3...,0x9aa1...,1
+...
+```
+
+A simple vista, **puede resultar complicado interpretar la información**, ya que:
+
+* Las direcciones (`0x...`) corresponden a **wallets de la blockchain**, que no tienen nombre ni contexto.
+* No hay etiquetas visibles que indiquen quién está detrás de cada dirección.
+* El grafo se compone de decenas o cientos de interacciones completamente anónimas y técnicas.
+
+---
+
+### 🧾 8.6 Sustituir direcciones por nombres legibles
+
+Como hemos comentado, los ficheros CSV contienen **direcciones de wallet** en formato hexadecimal (`0x...`), lo que dificulta mucho su interpretación visual. Para solventar este problema, hemos creado un pequeño script que permite **reemplazar esas direcciones por nombres más comprensibles**.
+
+---
+
+### 🛠️ Script `reemplazarCSV.js`
+
+Este script se encarga de recorrer un fichero CSV y sustituir las direcciones de wallet por nombres amigables que nos ayuden a reconocer rápidamente a los actores principales del grafo.
+
+#### 📂 Ubicación y edición del script
+
+Abre el archivo `reemplazarCSV.js` y observa que contiene una estructura como esta:
+
+```js
+const replacements = {
+  "0xc383d4920a1ec3d415216c5f014de6ccf86e546c": "Diego",
+  "0xc0794fd43b99337cf5b513c656c854f6c3ce166a": "otro nombre",
+
+...
+```
+
+Este **diccionario de reemplazo** sirve para asignar un alias legible a cada dirección específica.
+
+---
+
+### 🎯 Objetivo
+
+Con este reemplazo, cuando visualicemos el grafo en R:
+
+* En lugar de ver `"0xc383d4920a1ec3d415216c5f014de6ccf86e546c"`, veremos `"Diego"`.
+* En lugar de ver `"0xA8101E39B81Cc29C3C4248cA8ffe9dF00355a620"`, veremos `"otro nombre"`.
+
+Esto **mejorará radicalmente la legibilidad del grafo** y nos permitirá centrar el análisis en las relaciones entre personas o entidades identificables.
+
+---
+
+
+### ✂️ 8.7 Eliminación de direcciones irrelevantes: el array `podar`
+
+Además del reemplazo de nombres, el script `reemplazarCSV.js` también incluye una funcionalidad adicional muy útil: **la poda de direcciones**.
+
+#### 🧹 ¿Qué es podar?
+
+La idea es eliminar del CSV aquellas direcciones que no forman parte de nuestra red de interés. Estas wallets pueden corresponder a contratos automáticos, faucets, exchanges o nodos externos que aparecen en las transacciones pero que **no tienen un rol relevante** en nuestro análisis.
+
+---
+
+#### 📁 El array `podar`
+
+Dentro del mismo fichero `reemplazarCSV.js`, encontrarás otro array con el siguiente formato:
+
+```js
+const podar = [
+  "0x00000000001594c61dd8a6804da9ab58ed2483ce",
+  "0x1234567890abcdef1234567890abcdef12345678",
+  // Puedes añadir aquí tantas direcciones como quieras eliminar
+];
+````
+
+Estas direcciones serán **eliminadas completamente del CSV** (tanto como origen como destino), de modo que **no aparecerán en el grafo final**.
+
+---
+
+### ⚙️ 8.8 Ejecución del script de limpieza y reemplazo
+
+Una vez configurados los arrays `replacements` y `podar` en el archivo `reemplazarCSV.js`, ya puedes ejecutar el script para aplicar los cambios sobre los ficheros CSV generados anteriormente.
+
+#### ▶️ Ejecutar el script
+
+Desde la terminal, simplemente ejecuta:
+
+```bash
+node reemplazarCSV.js
+```
+
+---
+
+### 💡 ¿Qué hace este comando?
+
+Este script:
+
+* Buscará los ficheros `grafo_numero_transacciones.csv` y `grafo_valor_transacciones.csv` en la carpeta `/data/`
+* Reemplazará automáticamente las direcciones incluidas en el array `replacements` por nombres legibles
+* Eliminará por completo todas las filas donde aparezca alguna de las direcciones indicadas en el array `podar`
+
+---
+
+### 🧪 8.9 Continuar el análisis en R
+
+Una vez limpiados y preparados los ficheros CSV, ya puedes **retomar el análisis del grafo** usando R, igual que hiciste con la red de personajes de *Star Wars*.
+
+#### 💻 Abrir RStudio
+
+Te recomendamos abrir **RStudio** como entorno de trabajo, ya que facilita mucho la gestión de scripts, gráficos y carga de datos.
+
+---
+
+### 📥 Cargar el nuevo grafo en R
+
+En lugar de cargar el fichero `sw_4.csv`, ahora probablemente quieras comenzar directamente con el grafo obtenido de la red de Sepolia. Para ello, puedes usar este comando:
+
+```r
+grafo_enCSV <- read.csv("data\\grafo_valor_transacciones.csv")
+```
+
+---
+
+### 🔄 Continuar con el análisis
+
+Desde aquí puedes **continuar el manual tal y como lo hiciste con el grafo de *Star Wars***:
+
+
+
+---
+
+### 🎉 ¡Todo listo!
+
+Ya tienes en tus manos un fragmento real de la red de transacciones de la blockchain Sepolia, limpio, renombrado y preparado para el análisis. Ahora es el momento de aplicar todo lo aprendido y **descubrir patrones, nodos relevantes y estructuras dentro del grafo**.
+
+---
+
+### 🍀 ¡Suerte y disfruta con el análisis!
+
+Explora, experimenta, visualiza... y, sobre todo, **diviértete investigando cómo fluye el valor en una red descentralizada real**.
+
+# ¡Que la fuerza (y R) te acompañen!
+
+
