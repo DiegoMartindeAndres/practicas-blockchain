@@ -113,10 +113,11 @@ Ahora sí, comenzamos con la inicialización de nuestro entorno de trabajo en R.
 ### 📦 0.1 Instalación de paquetes necesarios
 
 ```r
+
 install.packages("igraph")
 install.packages("qgraph")
-```
 
+```
 > 📥 R te puede que te pregunte por el servidor CRAN desde el que descargar los paquetes. Elige uno en España si puedes (aunque cualquier otro también funciona bien).
 
 ---
@@ -126,18 +127,20 @@ install.packages("qgraph")
 Una vez descargados los paquetes, los cargamos con:
 
 ```r
+
 library(igraph)
 library(qgraph)
-```
 
+```
 ---
 
 ### 📁 0.3 Establecer el directorio de trabajo
 
 ```r
-setwd("C:\\trazabilidad\\")
-```
 
+setwd("C:\\trazabilidad\\")
+
+```
 📝 Notas:
 
 * En el código anterior, debes cambiar `"C:\\trazabilidad\\"` por la ruta donde quieras tener el proyecto.
@@ -168,8 +171,10 @@ En este apartado vamos a repasar algunos comandos fundamentales para trabajar co
 Para crear un vector en R, usamos la función `c()`, que permite concatenar elementos. Por ejemplo:
 
 ```r
+
 x = c(2, 5, 101, 34, 22, 0, 13, 4, 77, 3, 5, 75, 100, 43)
-````
+
+```
 
 Este comando crea un vector llamado `x` con 14 elementos numéricos.
 
@@ -179,10 +184,12 @@ Este comando crea un vector llamado `x` con 14 elementos numéricos.
 
 Una vez creado el vector, podemos ver su contenido simplemente escribiendo su nombre:
 
-```r
-x
-```
 
+```r
+
+x
+
+```
 Esto devolverá todos los elementos del vector.
 
 ---
@@ -192,17 +199,19 @@ Esto devolverá todos los elementos del vector.
 Para saber cuántos elementos tiene un vector, usamos la función `length()`:
 
 ```r
-length(x)
-```
 
+length(x)
+
+```
 En el ejemplo anterior, nos devolverá `14`, ya que ese es el número de elementos que contiene el vector `x`.
 
 También se puede usar directamente con otros vectores:
 
 ```r
-length(c("azul", "verde", "rojo", "blanco"))
-```
 
+length(c("azul", "verde", "rojo", "blanco"))
+
+```
 Este comando devolverá `4`, ya que se han pasado cuatro elementos al vector.
 
 ---
@@ -220,8 +229,10 @@ Para poder analizar los datos de forma más efectiva, muchas veces necesitamos o
 ### 🔢 Orden ascendente
 
 ```r
+
 sort(x)
-````
+
+```
 
 Ordena los elementos del vector `x` de menor a mayor.
 
@@ -230,25 +241,30 @@ Ordena los elementos del vector `x` de menor a mayor.
 #### 📌 Ejemplos
 
 ```r
-sort(c(23, 32, 4, 1, 399, -4))
-```
 
+sort(c(23, 32, 4, 1, 399, -4))
+
+```
 Devuelve:
 
 ```
+
 -4   1   4  23  32 399
+
 ```
 
 ```r
-sort(c("azul", "verde", "rojo", "blanco"))
-```
 
+sort(c("azul", "verde", "rojo", "blanco"))
+
+```
 Devuelve:
 
 ```
-"azul" "blanco" "rojo" "verde"
-```
 
+"azul" "blanco" "rojo" "verde"
+
+```
 > En el caso de cadenas de texto, el orden es alfabético.
 
 ---
@@ -258,9 +274,10 @@ Devuelve:
 Si queremos que el orden sea de mayor a menor, añadimos el parámetro `decreasing = TRUE`:
 
 ```r
-sort(x, decreasing = TRUE)
-```
 
+sort(x, decreasing = TRUE)
+
+```
 Esto invierte el orden del vector ordenado.
 
 ---
@@ -278,33 +295,38 @@ A menudo, cuando trabajamos con grandes vectores o listas, queremos echar un vis
 #### 🧪 Mostrar los primeros 6 elementos
 
 ```r
+
 head(x)
-````
+
+```
 
 Donde `x` es un conjunto de elementos. Por defecto, `head()` muestra los **primeros 6 elementos** del vector.
 
 **Ejemplo:**
 
 ```r
-head(c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25))
-```
 
+head(c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25))
+
+```
 ---
 
 #### 🧪 Mostrar los últimos 6 elementos
 
 ```r
-tail(x)
-```
 
+tail(x)
+
+```
 La función `tail()` muestra los **últimos 6 elementos** del conjunto `x`.
 
 **Ejemplo:**
 
 ```r
-tail(c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25))
-```
 
+tail(c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25))
+
+```
 ---
 
 ### 📈 Obtener el valor máximo y mínimo
@@ -314,33 +336,37 @@ Una de las operaciones más comunes al trabajar con datos numéricos es localiza
 #### 🔼 Obtener el valor máximo
 
 ```r
-max(x)
-```
 
+max(x)
+
+```
 Devuelve el **mayor valor** del conjunto `x`.
 
 **Ejemplo:**
 
 ```r
-max(c(4,5,76,4,45,75,23,34,98,65,54,-12,34,65,-7,65,-34))
-```
 
+max(c(4,5,76,4,45,75,23,34,98,65,54,-12,34,65,-7,65,-34))
+
+```
 ---
 
 #### 🔽 Obtener el valor mínimo
 
 ```r
-min(x)
-```
 
+min(x)
+
+```
 Devuelve el **menor valor** del conjunto `x`.
 
 **Ejemplo:**
 
 ```r
-min(c(4,5,76,4,45,75,23,34,98,65,54,-12,34,65,-7,65,-34))
-```
 
+min(c(4,5,76,4,45,75,23,34,98,65,54,-12,34,65,-7,65,-34))
+
+```
 ---
 
 ## 🔄 Convertir un grafo dirigido a no dirigido
@@ -356,16 +382,19 @@ Una de las operaciones que podemos realizar sobre un grafo es **cambiar su forma
 En **`igraph`**, esto puede hacerse fácilmente con la función `as_undirected()`.
 
 ```r
+
 # Convertimos el grafo dirigido 'net' a uno no dirigido
 g_nodirigido <- igraph::as_undirected(net, mode = 'collapse')
-````
+
+```
 
 🔁 También podrías encontrar este código con otra variable para ilustrar la misma idea:
 
 ```r
-g_dirigido <- igraph::as_undirected(net, mode = 'collapse')
-```
 
+g_dirigido <- igraph::as_undirected(net, mode = 'collapse')
+
+```
 📌 En esta transformación, el parámetro `mode = "collapse"` es especialmente relevante:
 
 * **`"collapse"`** combina los arcos entre dos nodos en uno solo (por ejemplo, si A → B y B → A, quedará una sola arista A—B sin dirección).
@@ -383,15 +412,18 @@ En esta primera etapa vamos a cargar un fichero `.csv` que contiene los datos ne
 Utilizaremos la función `read.csv()` de R, que nos permite leer un archivo de texto separado por comas y almacenarlo como un **data frame**, es decir, una tabla con filas y columnas.
 
 ```r
+
 grafo_enCSV <- read.csv("directorios\\nombreFichero.csv")
-````
+
+```
 
 🔁 **Ejemplo real aplicado a nuestro caso**:
 
 ```r
-grafo_enCSV <- read.csv("data\\sw_4.csv")
-```
 
+grafo_enCSV <- read.csv("data\\sw_4.csv")
+
+```
 Con este comando:
 
 * Estamos accediendo al archivo `"data/sw_4.csv"`, que contiene los datos de la red de personajes.
@@ -400,9 +432,10 @@ Con este comando:
 Para comprobar que los datos se han cargado correctamente, basta con escribir el nombre de la variable en la consola de R:
 
 ```r
-grafo_enCSV
-```
 
+grafo_enCSV
+
+```
 Esto mostrará por pantalla el contenido de la tabla, que servirá de base para construir y analizar el grafo. Podemos explorar las columnas disponibles, los personajes involucrados y las conexiones entre ellos.
 
 ---
@@ -412,8 +445,10 @@ Esto mostrará por pantalla el contenido de la tabla, que servirá de base para 
 Una vez que hemos cargado el fichero CSV en memoria con la variable `grafo_enCSV`, es necesario convertir esta estructura a un objeto de tipo `igraph`, que es el formato que R utiliza para operar con grafos.
 
 ```r
+
 g <- graph_from_data_frame(d = grafo_enCSV, directed = FALSE)
-````
+
+```
 
 Con esta instrucción:
 
@@ -434,8 +469,10 @@ En este apartado aprenderemos a extraer información básica pero muy útil sobr
 ### 🔹 3.1 Vértices del grafo
 
 ```r
+
 V(g)
-````
+
+```
 
 Este comando nos permite acceder a los **vértices** del grafo `g`.
 Devuelve una lista con los objetos de tipo vértice, que contienen tanto su nombre como otras propiedades asociadas.
@@ -445,9 +482,10 @@ Devuelve una lista con los objetos de tipo vértice, que contienen tanto su nomb
 ### 🔹 3.2 Nombres de los vértices
 
 ```r
-V(g)$name
-```
 
+V(g)$name
+
+```
 En este caso accedemos **solo a los nombres** de los vértices, es decir, el texto asociado a cada nodo.
 Esto es diferente de `V(g)`, que devuelve los objetos completos. Aquí solo obtenemos el vector de nombres, útil para visualizar o procesar etiquetas.
 
@@ -456,9 +494,10 @@ Esto es diferente de `V(g)`, que devuelve los objetos completos. Aquí solo obte
 ### 🔹 3.3 Aristas del grafo
 
 ```r
-E(g)
-```
 
+E(g)
+
+```
 Con este comando accedemos a las **aristas** del grafo. Cada arista conecta dos vértices, y este comando nos da la lista completa de ellas.
 
 ---
@@ -466,9 +505,10 @@ Con este comando accedemos a las **aristas** del grafo. Cada arista conecta dos 
 ### 🔹 3.4 Peso de las aristas
 
 ```r
-E(g)$weight
-```
 
+E(g)$weight
+
+```
 Si las aristas tienen un **peso asociado** (por ejemplo, el número de interacciones entre personajes en una red social), este comando nos permite acceder a esa información.
 
 ---
@@ -476,9 +516,10 @@ Si las aristas tienen un **peso asociado** (por ejemplo, el número de interacci
 ### 🔹 3.5 Matriz de adyacencia
 
 ```r
-g[]
-```
 
+g[]
+
+```
 Esta notación compacta genera la **matriz de adyacencia** del grafo, una representación en forma de tabla donde:
 
 * Las filas y columnas representan los nodos.
@@ -503,10 +544,21 @@ El **grado** de un nodo mide cuántas aristas (conexiones) tiene.
   * **Grado de salida** (`out-degree`)
 
 ```r
+
 degree(g)
-````
+
+```
 
 Esto devolverá un vector con el número de conexiones que tiene cada nodo. Es una forma rápida de saber quién está más "conectado".
+
+
+¿Quieres verlo ordenado?
+
+```r
+
+sort(degree(g), decreasing = TRUE)
+
+```
 
 ---
 
@@ -515,17 +567,19 @@ Esto devolverá un vector con el número de conexiones que tiene cada nodo. Es u
 La **fuerza** es una extensión del grado que **tiene en cuenta los pesos** de las aristas (si existen). Es decir, en lugar de contar conexiones, suma el peso de todas las conexiones del nodo.
 
 ```r
-strength(g)
-```
 
+strength(g)
+
+```
 Esto es útil cuando las relaciones tienen diferente intensidad, por ejemplo, en una red donde el peso representa el número de interacciones entre personajes.
 
 ¿Quieres verlo ordenado?
 
 ```r
-sort(strength(g), decreasing = TRUE)
-```
 
+sort(strength(g), decreasing = TRUE)
+
+```
 ---
 
 #### 🔹 4.2 Intermediación (*Betweenness*)
@@ -535,16 +589,19 @@ La **intermediación** mide cuántas veces un nodo está en el **camino más cor
 👉 Es un indicador de **poder de intermediación o control**, ya que estos nodos pueden actuar como "puentes" entre distintas partes de la red.
 
 ```r
-betweenness(g)
-```
 
+betweenness(g)
+
+```
 Cuanto mayor sea este valor, más importante es el nodo como punto de paso en la red.
 
 ¿Quieres verlo ordenado?
-```r
-sort(betweenness(g), decreasing = TRUE)
-```
 
+```r
+
+sort(betweenness(g), decreasing = TRUE)
+
+```
 ---
 
 #### 🔹 4.3 Cercanía (*Closeness*)
@@ -552,24 +609,27 @@ sort(betweenness(g), decreasing = TRUE)
 La **cercanía** mide cuán "cerca" está un nodo del resto de nodos de la red, es decir, la **distancia media mínima** desde ese nodo al resto.
 
 ```r
-closeness(g)
-```
 
+closeness(g)
+
+```
 Se recomienda utilizar la versión normalizada para facilitar la comparación:
 
 ```r
-closeness(g, normalized=TRUE)
-```
 
+closeness(g, normalized=TRUE)
+
+```
 Esta métrica es útil para detectar nodos que, sin tener muchas conexiones, pueden acceder rápidamente al resto de la red.
 
 
 Para verlo en orden descendente:
 
 ```r
-sort(closeness(g, normalized=TRUE), decreasing = TRUE)
-```
 
+sort(closeness(g, normalized=TRUE), decreasing = TRUE)
+
+```
 ---
 
 #### 🔹 4.4 Obtener el Eigenvector (o vector propio)
@@ -579,17 +639,20 @@ La **centralidad del vector propio** (`eigenvector centrality`) mide la influenc
 Esta medida **solo se aplica a grafos no dirigidos**.
 
 ```r
+
 eigen_centrality(g)$vector
-````
+
+```
 
 Este comando devuelve un vector con los valores de centralidad del vector propio para cada nodo del grafo `g`.
 
 Para verlo ordenado de mayor a menor:
 
 ```r
-sort(eigen_centrality(g)$vector, decreasing = TRUE)
-```
 
+sort(eigen_centrality(g)$vector, decreasing = TRUE)
+
+```
 ---
 
 #### 🔹 4.5 Obtener el PageRank
@@ -599,17 +662,19 @@ La medida de **PageRank** es una variante de la centralidad del vector propio, f
 Funciona con grafos dirigidos y no dirigidos.
 
 ```r
-page_rank(g)$vector
-```
 
+page_rank(g)$vector
+
+```
 Este comando proporciona el vector de PageRank para cada nodo del grafo `g`.
 
 Para verlo ordenado de mayor a menor:
 
 ```r
-sort(page_rank(g)$vector, decreasing = TRUE)
-```
 
+sort(page_rank(g)$vector, decreasing = TRUE)
+
+```
 ---
 
 #### 🔹 4.6 Obtener el Authority Score
@@ -617,17 +682,19 @@ sort(page_rank(g)$vector, decreasing = TRUE)
 El **Authority Score** es una medida introducida en el análisis de hiperenlaces (algoritmo HITS), pensada originalmente para la web. Un nodo tiene una **alta puntuación de autoridad** si muchos nodos importantes (hubs) apuntan hacia él.
 
 ```r
-hits_scores(g)$authority
-```
 
+hits_scores(g)$authority
+
+```
 Este comando devuelve un vector con los valores de autoridad para cada nodo del grafo `g`.
 
 Para verlo ordenado de mayor a menor:
 
 ```r
-sort(hits_scores(g)$authority, decreasing = TRUE)
-```
 
+sort(hits_scores(g)$authority, decreasing = TRUE)
+
+```
 ---
 
 ### 🔢 4.7 Obtener el **Hub Score**
@@ -637,8 +704,10 @@ La *puntuación de intermediador* o **hub score** es otra medida de centralidad,
 Un nodo actúa como **hub** cuando apunta a muchos nodos que, a su vez, son importantes. Es decir, cuando enlaza a nodos con alta autoridad. Esta métrica es especialmente útil para identificar nodos que son **difusores de información**.
 
 ```r
+
 hits_scores(g)$hub
-````
+
+```
 
 📌 *Donde `g` es el grafo.*
 📤 El resultado es un vector con la puntuación de hub para cada nodo del grafo.
@@ -646,9 +715,10 @@ hits_scores(g)$hub
 Para verlo ordenado de mayor a menor:
 
 ```r
-sort(hits_scores(g)$hub, decreasing = TRUE)
-```
 
+sort(hits_scores(g)$hub, decreasing = TRUE)
+
+```
 ---
 
 ### 🧭 4.8 Obtener vecinos y vecinos de vecinos
@@ -658,18 +728,20 @@ Aunque no es una medida de centralidad como tal, **analizar la vecindad de un no
 #### 👥 Obtener los vecinos directos
 
 ```r
-neighbors(g, v = which(V(g)$name == "nombre"))
-```
 
+neighbors(g, v = which(V(g)$name == "nombre"))
+
+```
 📌 *Donde `g` es el grafo y `"nombre"` es el nombre del nodo cuyo entorno queremos explorar.*
 Devuelve los **nodos vecinos directos**, es decir, conectados por una única arista.
 
 ✅ *Ejemplo con el droide R2-D2:*
 
 ```r
-neighbors(g, v = which(V(g)$name == "R2-D2"))
-```
 
+neighbors(g, v = which(V(g)$name == "R2-D2"))
+
+```
 ---
 
 #### 🕸️ Obtener vecinos de vecinos (orden 2)
@@ -677,18 +749,20 @@ neighbors(g, v = which(V(g)$name == "R2-D2"))
 Para analizar **entornos más amplios**, podemos usar la función `ego()`, que permite obtener nodos dentro de una cierta distancia.
 
 ```r
-ego(g, order = 2, nodes = which(V(g)$name == "nombre"))
-```
 
+ego(g, order = 2, nodes = which(V(g)$name == "nombre"))
+
+```
 📌 *Donde `order = 2` indica que queremos nodos a distancia ≤ 2 del nodo indicado.*
 Devuelve una lista con los nodos que están a uno o dos pasos del nodo inicial.
 
 ✅ *Ejemplo con R2-D2:*
 
 ```r
-ego(g, order = 2, nodes = which(V(g)$name == "R2-D2"))
-```
 
+ego(g, order = 2, nodes = which(V(g)$name == "R2-D2"))
+
+```
 Esto nos permitirá explorar el **contexto extendido** del personaje en la red de relaciones de la película.
 
 ---
@@ -704,8 +778,10 @@ En esta sección analizamos algunas propiedades estructurales globales del grafo
 El **diámetro** de un grafo es la distancia más larga (en número de aristas o peso total, si están ponderadas) entre dos nodos cualesquiera. Es decir, representa la **mayor distancia mínima** entre dos nodos conectados.
 
 ```r
+
 diameter(g)
-````
+
+```
 
 Este comando calcula por defecto el diámetro del grafo `g`, considerando las direcciones y los pesos si los hubiera.
 
@@ -717,9 +793,10 @@ Este comando calcula por defecto el diámetro del grafo `g`, considerando las di
 #### 🧪 Ejemplo:
 
 ```r
-diameter(g, directed=FALSE, weights=NA)
-```
 
+diameter(g, directed=FALSE, weights=NA)
+
+```
 Este ejemplo calcularía el diámetro **más largo en número de aristas** en un grafo no dirigido, sin tener en cuenta ponderaciones.
 
 ---
@@ -729,9 +806,10 @@ Este ejemplo calcularía el diámetro **más largo en número de aristas** en un
 El **camino más largo más corto**, o simplemente `get_diameter`, nos devuelve **los nodos que forman el diámetro** calculado previamente. Es decir, no solo la longitud, sino el camino en sí.
 
 ```r
-get_diameter(g)
-```
 
+get_diameter(g)
+
+```
 Este comando devuelve el vector de nodos que componen el camino más largo encontrado dentro del grafo `g`.
 
 #### 🔧 Modificadores útiles:
@@ -742,9 +820,10 @@ Este comando devuelve el vector de nodos que componen el camino más largo encon
 #### 🧪 Ejemplo:
 
 ```r
-get_diameter(g, directed=FALSE, weights=NA)
-```
 
+get_diameter(g, directed=FALSE, weights=NA)
+
+```
 Este ejemplo extrae el camino más largo **basado en número de saltos**, sin considerar pesos ni direcciones.
 
 ---
@@ -756,8 +835,10 @@ Estas propiedades nos dan una idea del **tamaño efectivo** del grafo, es decir,
 La **distancia media** (o _average path length_) es la media de todas las distancias más cortas entre cada par de nodos del grafo. En otras palabras, nos dice **cuántos pasos, de media, se necesitan para ir de un nodo a otro** dentro de la red.
 
 ```r
+
 mean_distance(g)
-````
+
+```
 
 Este comando calcula la distancia media teniendo en cuenta si el grafo es dirigido o no.
 
@@ -768,9 +849,10 @@ Este comando calcula la distancia media teniendo en cuenta si el grafo es dirigi
 #### 🧪 Ejemplo:
 
 ```r
-mean_distance(g, directed=FALSE)
-```
 
+mean_distance(g, directed=FALSE)
+
+```
 Este ejemplo nos devuelve la distancia media entre nodos, asumiendo que el grafo es no dirigido.
 
 > Esta medida es muy útil para estimar **la eficiencia de la red** en términos de transmisión de información o flujo entre nodos.
@@ -782,9 +864,10 @@ Este ejemplo nos devuelve la distancia media entre nodos, asumiendo que el grafo
 La **reciprocidad** mide la proporción de relaciones **bidireccionales** en un grafo dirigido. Es decir, dado un enlace de `A → B`, ¿también existe `B → A`?
 
 ```r
-reciprocity(g)
-```
 
+reciprocity(g)
+
+```
 Este comando devuelve un valor entre 0 y 1:
 
 * `0` indica que **ninguna relación** es recíproca.
@@ -807,33 +890,38 @@ En este apartado vamos a detectar y visualizar las comunidades del grafo utiliza
 > ⚠️ *Importante*: Este procedimiento **solo es válido para grafos no dirigidos**. Por tanto, lo primero será asegurarnos de convertir el grafo.
 
 ```r
+
 # Convertimos el grafo a no dirigido si no lo era ya.
 g_nodirigido <- igraph::as_undirected(g, mode = 'collapse')
-````
+
+```
 
 El modo `'collapse'` fusiona aristas múltiples entre los mismos nodos, sumando sus pesos si existieran.
 
 A continuación, descomponemos el grafo en sus componentes conexos y nos quedamos únicamente con el mayor de ellos. Esto es habitual para evitar errores en algoritmos de clustering que no manejan bien nodos desconectados.
 
 ```r
+
 # Extraemos la componente conexa gigante
 giant <- decompose(g_nodirigido)[[1]]
-```
 
+```
 Una vez tenemos el grafo limpio, aplicamos el algoritmo Infomap, que intenta optimizar la codificación de trayectorias aleatorias por la red para identificar comunidades:
 
 ```r
+
 # Calculamos los clusters con Infomap
 comm <- cluster_infomap(giant)
-```
 
+```
 Finalmente, representamos visualmente las comunidades dentro del grafo:
 
 ```r
+
 # Dibujamos el grafo coloreando los clusters
 plot(comm, giant)
-```
 
+```
 Este diagrama mostrará los nodos agrupados según las comunidades detectadas, usando diferentes colores para distinguirlas. Es una manera muy intuitiva de visualizar la organización de la red y detectar posibles subgrupos de interés (alianzas, grupos afines, etc.).
 
 
@@ -848,8 +936,10 @@ El objetivo en este caso es detectar comunidades dentro del grafo utilizando el 
 #### 🧮 Cálculo de los clusters mediante *edge betweenness*
 
 ```r
+
 ceb <- cluster_edge_betweenness(g_nodirigido)
-````
+
+```
 
 Esta instrucción calcula la partición del grafo basada en las aristas con mayor intermediación. Cuanto más alto sea el *betweenness* de una arista, más probable es que conecte diferentes comunidades. Eliminando esas aristas, el algoritmo va separando el grafo en grupos más cohesivos internamente.
 
@@ -858,9 +948,10 @@ Esta instrucción calcula la partición del grafo basada en las aristas con mayo
 #### 🌿 Visualización jerárquica de los grupos detectados
 
 ```r
-dendPlot(ceb, mode = "hclust")
-```
 
+dendPlot(ceb, mode = "hclust")
+
+```
 Esto dibuja un **dendrograma**, es decir, una representación jerárquica de cómo se agrupan los nodos. Permite observar la estructura de los clusters a diferentes niveles de agregación.
 
 ---
@@ -868,9 +959,10 @@ Esto dibuja un **dendrograma**, es decir, una representación jerárquica de có
 #### 🖼️ Representación gráfica del grafo con los clusters
 
 ```r
-plot(ceb, g_nodirigido)
-```
 
+plot(ceb, g_nodirigido)
+
+```
 Esta línea genera un gráfico del grafo, donde los nodos se agrupan y colorean automáticamente según su pertenencia a cada comunidad detectada por el algoritmo. Es una forma muy intuitiva de visualizar la estructura modular del grafo.
 
 
@@ -891,6 +983,7 @@ Vamos a pintar los nodos del grafo con colores diferentes dependiendo de la facc
 Primero, creamos tres listas que agrupan los personajes en función de su alineamiento en el universo Star Wars:
 
 ```r
+
 lado_oscuro <- c("DARTH VADER","EMPEROR","NUTE GUNRAY","GENERAL GRIEVOUS", "TARKIN","PIETT","RUNE","BOBA FETT","LAMA SU","COUNT DOOKU","DARTH MAUL",
 "JANGO FETT","DOFINE","PK-4","SENATOR ASK AAK","POGGLE","SUN RIT","FANG ZAR", "GIDDEAN DANU","MOTTI","OZZEL","NEEDA","JERJERROD")
 
@@ -899,7 +992,8 @@ lado_luminoso <- c("ANAKIN","LUKE","OBI-WAN","C-3PO","R2-D2","CHEWBACCA","HAN", 
 "MON MOTHMA","BERU","JANSON","BRAVO THREE","TARPALS","CLIEGG","JOBAL","SOLA", "PLO KOON","CAPTAIN ANTILLES","CAMIE","DODONNA","DERLIN","RABE","REY","POE")
 
 neutral <- c("FODE/BEED","WATTO","SIO BIBBLE","JABBA","MAD MADDA","TAUN WE", "TC-14","KITSTER","DACK","SEBULBA","JIRA","VALORUM","WALD","GREEDO", "ORN FREE TAA","TION MEDON","ON MEDON","BIB FORTUNA","BOUSHH")
-````
+
+```
 
 ---
 
@@ -914,6 +1008,7 @@ Utilizamos la propiedad `color` de los vértices (`V`) para asignar un color dis
 Esto se aplica tanto al grafo dirigido original `g`, como a su versión no dirigida `g_nodirigido`:
 
 ```r
+
 V(g)$color <- NA
 V(g)$color[V(g)$name %in% lado_oscuro] <- "red"
 V(g)$color[V(g)$name %in% lado_luminoso] <- "gold"
@@ -923,8 +1018,8 @@ V(g_nodirigido)$color <- NA
 V(g_nodirigido)$color[V(g_nodirigido)$name %in% lado_oscuro] <- "red"
 V(g_nodirigido)$color[V(g_nodirigido)$name %in% lado_luminoso] <- "gold"
 V(g_nodirigido)$color[V(g_nodirigido)$name %in% neutral] <- "grey60"
-```
 
+```
 ---
 
 Este tipo de codificación por color es especialmente útil a la hora de visualizar la estructura de la red y detectar agrupamientos naturales, patrones de comunicación o aislamiento entre facciones.
@@ -935,9 +1030,11 @@ Este tipo de codificación por color es especialmente útil a la hora de visuali
 Una vez que hemos clasificado los personajes en facciones (por ejemplo, lado luminoso, lado oscuro, etc.), podemos proceder a visualizar el grafo.  
 
 ```r
+
 plot(g)
 plot(g_nodirigido)
-````
+
+```
 
 Ambos comandos nos permiten visualizar el grafo completo, tanto en su versión dirigida (`g`) como no dirigida (`g_nodirigido`). En este punto, los nodos aparecerán coloreados según la asignación que hayamos hecho anteriormente para distinguir facciones.
 
@@ -964,6 +1061,7 @@ Estos parámetros se pueden combinar para obtener una visualización más clara 
 #### Ejemplo de uso:
 
 ```r
+
 plot(g,
      vertex.label.color = "black",     # El texto de los nombres de los nodos será negro
      vertex.label.cex = 0.75,          # El tamaño del texto será un 75% del original
@@ -971,7 +1069,8 @@ plot(g,
      edge.arrow.mode = "-",            # Se eliminan las flechas (ideal para grafos no dirigidos)
      edge.color = "grey20"             # Las aristas se dibujarán en un gris oscuro
 )
-````
+
+```
 
 > Este tipo de personalización resulta especialmente útil cuando tenemos muchos nodos o aristas, ya que nos permite reducir el ruido visual y resaltar la estructura del grafo.
 
@@ -993,6 +1092,7 @@ Algunos de los valores posibles para `layout` son:
 A continuación se muestra un ejemplo utilizando `layout_on_sphere`:
 
 ```r
+
 plot( g,
       layout = layout_on_sphere,
       vertex.label.color = "black",
@@ -1001,7 +1101,8 @@ plot( g,
       edge.arrow.mode = "-",
       edge.color = "grey20"
 )
-````
+
+```
 
 > 📌 **Sugerencia:** cambia `layout_on_sphere` por otras alternativas (como `layout_with_kk` o `layout_in_circle`) para observar cómo varía la estructura visual del grafo.
 > Esto puede ayudarte a **destacar patrones, comunidades o conexiones relevantes** dependiendo del objetivo del análisis.
@@ -1021,8 +1122,10 @@ Uno de los algoritmos más conocidos y utilizados para este propósito es **Fruc
 Primero almacenamos en una variable la distribución generada por el algoritmo:
 
 ```r
+
 dist <- igraph::layout_with_fr(g)
-````
+
+```
 
 Aquí usamos el grafo `g` como entrada para calcular las posiciones de los nodos.
 
@@ -1033,6 +1136,7 @@ Aquí usamos el grafo `g` como entrada para calcular las posiciones de los nodos
 Una vez obtenidas las posiciones, las usamos como parámetro del grafo para representarlo visualmente:
 
 ```r
+
 plot( g,
       layout = dist,                  # Aplicamos la distribución calculada
       vertex.label.color= "black",   # Color de las etiquetas de los nodos
@@ -1041,8 +1145,8 @@ plot( g,
       edge.arrow.mode = "-",         # Modo de flecha (aquí desactivada)
       edge.color="grey20"            # Color de las aristas
 )
-```
 
+```
 > ✅ Este tipo de algoritmos ayudan a generar representaciones más legibles y útiles para análisis visuales, especialmente en redes densas o con muchas conexiones.
 
 Puedes probar también con otros algoritmos similares como `layout_with_fr` (abreviatura del anterior) o `layout_with_drl` para comparar resultados.
@@ -1059,8 +1163,10 @@ Una vez explorado el algoritmo de **Fruchterman-Reingold** en su versión básic
 Primero extraemos las aristas del grafo en forma de lista de pares (sin nombres, es decir, como índices numéricos de los nodos):
 
 ```r
+
 e <- as_edgelist(g, names=FALSE)
-````
+
+```
 
 ---
 
@@ -1073,14 +1179,15 @@ Usamos la función `qgraph.layout.fruchtermanreingold()` para calcular una **dis
 * `repulse.rad=(vcount(g)^3.1)`: determina el radio de repulsión entre nodos (nodos demasiado cercanos se repelen con más fuerza).
 
 ```r
+
 dist2 <- qgraph.layout.fruchtermanreingold(
   e,
   vcount = vcount(g),
   area = 8 * (vcount(g)^2),
   repulse.rad = (vcount(g)^3.1)
 )
-```
 
+```
 ---
 
 #### 🔹 Paso 3: Dibujar el grafo con la nueva distribución
@@ -1088,6 +1195,7 @@ dist2 <- qgraph.layout.fruchtermanreingold(
 Finalmente, aplicamos esta distribución al grafo usando el parámetro `layout` dentro de la función `plot()`:
 
 ```r
+
 plot(
   g,
   layout = dist2,  # Se añade aquí la nueva distribución
@@ -1097,8 +1205,8 @@ plot(
   edge.arrow.mode = "-",
   edge.color = "grey20"
 )
-```
 
+```
 Esto generará un diagrama más equilibrado visualmente, especialmente útil cuando se trabaja con redes grandes o densas, ya que permite una lectura más clara de las relaciones.
 
 ---
@@ -1113,17 +1221,17 @@ En esta sección vamos a representar el grafo incorporando:
 - La partición en clusters calculada previamente mediante *edge betweenness* (`ceb`), que permite colorear automáticamente cada grupo.
 
 ```r
-plot( g,
-      ceb,                     # Información de clusters detectados
-      layout = dist2,          # Distribución refinada de nodos
-      vertex.label.color= "black",
-      vertex.label.cex= 0.75,
-      edge.arrow.size=0.25,
-      edge.arrow.mode = "-",   # Sin flechas
-      edge.color="grey20"
-      )
-```
 
+plot( ceb, g,                       # Pintamos el grafo "g" con los clusters "ceb"
+      layout = dist2,              # Usamos la distribución refinada previamente calculada
+      vertex.label.color = "black",# Color del texto del nombre del nodo
+      vertex.label.cex = 0.75,     # Tamaño del texto del nodo
+      edge.arrow.size = 0.25,      # Tamaño de las flechas
+      edge.arrow.mode = "-",       # Anula la dirección de las flechas (modo no dirigido)
+      edge.color = "grey20"        # Color de las aristas
+)
+
+```
 ---
 
 ### 7.7 Tamaño de los nodos según métricas de centralidad
@@ -1146,8 +1254,10 @@ En este ejemplo, vamos a modificar el **tamaño de los nodos** usando la métric
 #### 7.7.1 Aplicación de Closeness al tamaño de los nodos
 
 ```r
+
 V(g_nodirigido)$size = closeness(g_nodirigido, mode = "out") / valor
-````
+
+```
 
 * La división entre `valor` es simplemente una forma de escalar visualmente los tamaños para que se ajusten bien al grafo.
 * Ese `valor` se debe ajustar de forma empírica, probando hasta encontrar una escala que resulte visualmente informativa.
@@ -1155,9 +1265,10 @@ V(g_nodirigido)$size = closeness(g_nodirigido, mode = "out") / valor
 **Ejemplo 1: Ajuste empírico multiplicando por 2000**
 
 ```r
-V(g_nodirigido)$size = closeness(g_nodirigido, mode = "out") * 2000
-```
 
+V(g_nodirigido)$size = closeness(g_nodirigido, mode = "out") * 2000
+
+```
 ---
 
 #### 7.7.2 Visualización del grafo
@@ -1165,6 +1276,7 @@ V(g_nodirigido)$size = closeness(g_nodirigido, mode = "out") * 2000
 Una vez ajustado el tamaño de los nodos, podemos visualizar el grafo utilizando la distribución de nodos que prefiramos. En este caso usamos `dist2`, que es una distribución refinada (por ejemplo, obtenida con Fruchterman-Reingold).
 
 ```r
+
 plot(
   g_nodirigido,
   layout = dist2,                 # Distribución previamente calculada
@@ -1174,8 +1286,8 @@ plot(
   edge.arrow.mode = "-",          # Sin flechas (grafo no dirigido)
   edge.color = "grey20"           # Color de las aristas
 )
-```
 
+```
 > ℹ️ *Recuerda que también puedes experimentar con otras métricas cambiando la función `closeness(...)` por `betweenness(...)`, `page_rank(...)$vector`, etc.*
 
 ---
@@ -1185,20 +1297,24 @@ plot(
 En esta sección vamos a ajustar el **tamaño de los nodos** en función de su valor de **betweenness**, una medida de centralidad que nos indica cuántos caminos más cortos entre pares de nodos pasan por un nodo determinado. Es útil para identificar **nodos intermediarios clave**.
 
 ```r
+
 V(g_nodirigido)$size = betweenness(g_nodirigido) / valor
-````
+
+```
 
 🔧 El parámetro `valor` actúa como un **factor de escala**. Es necesario **probar con distintos valores** para encontrar una visualización adecuada y legible.
 
 📌 Ejemplo práctico:
 
 ```r
-V(g_nodirigido)$size = betweenness(g_nodirigido) / 10
-```
 
+V(g_nodirigido)$size = betweenness(g_nodirigido) / 10
+
+```
 Una vez asignados los tamaños, podemos visualizar el grafo con nuestra distribución personalizada:
 
 ```r
+
 plot(g_nodirigido,
      layout = dist2,                  # Usamos la distribución refinada definida anteriormente
      vertex.label.color = "black",   # Color del texto de las etiquetas de los nodos
@@ -1207,8 +1323,8 @@ plot(g_nodirigido,
      edge.arrow.mode = "-",          # Sin flechas (solo líneas)
      edge.color = "grey20"           # Color de las aristas
 )
-```
 
+```
 ---
 
 #### 7.7.3 Modificar el tamaño de los nodos según la centralidad de vector propio (*eigen\_centrality*)
@@ -1216,20 +1332,23 @@ plot(g_nodirigido,
 Otra forma de resaltar los nodos importantes es usar su **centralidad de vector propio**, también conocida como **eigenvector centrality**. Esta medida no solo tiene en cuenta cuántas conexiones tiene un nodo, sino también **la importancia de los nodos con los que está conectado**.
 
 ```r
-V(g_nodirigido)$size = eigen_centrality(g_nodirigido)$vector * valor
-```
 
+V(g_nodirigido)$size = eigen_centrality(g_nodirigido)$vector * valor
+
+```
 🔧 Nuevamente, `valor` es un factor de escala que debemos ajustar manualmente.
 
 📌 Ejemplo práctico:
 
 ```r
-V(g_nodirigido)$size = eigen_centrality(g_nodirigido)$vector * 50
-```
 
+V(g_nodirigido)$size = eigen_centrality(g_nodirigido)$vector * 50
+
+```
 Y lo representamos gráficamente con el mismo estilo visual:
 
 ```r
+
 plot(g_nodirigido,
      layout = dist2,
      vertex.label.color = "black",
@@ -1238,7 +1357,288 @@ plot(g_nodirigido,
      edge.arrow.mode = "-",
      edge.color = "grey20"
 )
+
+```
+🧠 **Nota:** Estas representaciones son muy útiles para identificar visualmente qué nodos son clave en la estructura de la red según distintos criterios de centralidad.
+
+---
+
+## 🌐 8. Exploración de una red real: la blockchain de Sepolia
+
+Después de haber trabajado con la red de personajes de *Star Wars*, ha llegado el momento de poner a prueba lo aprendido sobre grafos y medidas de centralidad, pero esta vez con una red real: una red de transacciones de la **blockchain de Sepolia**.
+
+---
+
+### 🚀 8.1 Descarga de un fragmento de red real
+
+Vamos a utilizar un script en Node.js llamado `grafoSepolia.js`, que está diseñado para conectarse con la API pública de **Etherscan** en la red de pruebas Sepolia y descargar un subconjunto del grafo de transacciones a partir de una dirección inicial (wallet).
+
+#### 📦 Requisitos previos
+Antes de ejecutar el script, asegúrate de tener instalado:
+- Node.js
+- Una clave API gratuita de [Etherscan](https://etherscan.io/apis)
+
+---
+
+### 🔧 8.2 Personalización del script
+
+A continuación, se detallan las líneas que **debes configurar** en `grafoSepolia.js` para adaptar el script a tus necesidades:
+
+#### 1. **API Key de Etherscan**
+En esta línea debes introducir tu clave personal de Etherscan:
+
+```js
+const API_KEY = "TU_API_KEY_AQUI"; // ← Sustituye por tu API key de Etherscan
+````
+
+Esta clave es obligatoria para poder realizar peticiones a la API.
+
+#### 2. **Dirección de origen**
+
+Por defecto, el script parte de una wallet de prueba de Diego, pero puedes usar cualquier otra dirección válida de la red Sepolia:
+
+```js
+const START_ADDRESS = "0xC383d4920a1eC3D415216C5f014de6CCf86e546c"; // Dirección de origen. Wallet de prueba de Diego
 ```
 
-🧠 **Nota:** Estas representaciones son muy útiles para identificar visualmente qué nodos son clave en la estructura de la red según distintos criterios de centralidad.
+Cambia esta dirección por otra si quieres comenzar desde un nodo diferente del grafo.
+
+#### 3. **Profundidad de exploración**
+
+Define cuántos niveles de profundidad quieres recorrer a partir de la dirección de origen. Cuanto mayor sea este número, más grande será el fragmento del grafo que se obtendrá:
+
+```js
+const DEPTH_LIMIT = 5; // Profundidad máxima de exploración
+```
+
+> ⚠️ Ojo: un valor alto puede ralentizar mucho la ejecución o generar un volumen de datos demasiado grande.
+
+#### 4. **Tiempo de espera entre peticiones**
+
+Para evitar **saturar la API de Etherscan** o recibir errores por exceso de peticiones, puedes configurar un retardo entre cada llamada:
+
+```js
+const DELAY_MS = 300; // Tiempo de espera entre peticiones en ms
+```
+
+Puedes subir este valor si observas errores de rate-limit o tiempos de respuesta muy variables.
+
+---
+
+### 🖥️ 8.3 Ejecución del script paso a paso
+
+Para ejecutar correctamente el script `grafoSepolia.js`, sigue los siguientes pasos desde la terminal:
+
+---
+
+#### ✅ Paso 1: Acceder al directorio del proyecto
+
+Abre una terminal y navega hasta la carpeta donde tengas el script `grafoSepolia.js`. Por ejemplo:
+
+```bash
+cd ruta/del/proyecto
+````
+
+---
+
+#### 📦 Paso 2: Instalar las dependencias necesarias
+
+El script utiliza librerías de Node.js como `axios` y `fs`, que deben instalarse previamente. Ejecuta:
+
+```bash
+npm install
+```
+
+Este comando instalará automáticamente las dependencias listadas en el fichero `package.json`.
+
+---
+
+#### ▶️ Paso 3: Ejecutar el script
+
+Una vez instaladas las dependencias, puedes lanzar el script con:
+
+```bash
+node grafoSepolia.js
+```
+
+---
+
+### 📁 8.4 Salida del script
+
+Al ejecutar el script, se generarán **dos ficheros CSV** dentro de la carpeta `/data/`:
+
+* `grafo_numero_transacciones.csv`:
+  Contiene las aristas del grafo donde el peso indica el **número total de transacciones** entre dos direcciones (`from → to`).
+
+* `grafo_valor_transacciones.csv`:
+  Contiene las aristas del grafo donde el peso representa la **suma del valor transferido** (en ETH) entre dos direcciones.
+
+```csv
+source,target,weight
+0x1234...,0xabcd...,2         ← número de transacciones
+0x1234...,0xabcd...,0.0471    ← valor acumulado en ETH
+```
+
+> ✅ **Recomendamos utilizar el fichero `grafo_valor_transacciones.csv`**, ya que refleja de forma más realista la magnitud económica de las interacciones en la red.
+
+---
+
+### 🔍 8.5 Exploración de los ficheros CSV generados
+
+Una vez generado el grafo, podemos abrir los ficheros CSV resultantes para observar su estructura. Puedes utilizar cualquier editor de texto, hoja de cálculo o incluso cargarlos directamente en R o Python.
+
+Los ficheros son:
+
+- `data/grafo_numero_transacciones.csv`
+- `data/grafo_valor_transacciones.csv`
+
+Ambos contienen tres columnas: `source`, `target` y `weight`, que representan los nodos de origen y destino, y el peso de la arista, respectivamente (número de transacciones o valor total transferido en ETH).
+
+#### 🧠 ¿Qué observarás?
+
+Verás algo como esto:
+
+```csv
+source,target,weight
+0x9aa1...,0xc383...,3
+0x7df3...,0x9aa1...,1
+...
+```
+
+A simple vista, **puede resultar complicado interpretar la información**, ya que:
+
+* Las direcciones (`0x...`) corresponden a **wallets de la blockchain**, que no tienen nombre ni contexto.
+* No hay etiquetas visibles que indiquen quién está detrás de cada dirección.
+* El grafo se compone de decenas o cientos de interacciones completamente anónimas y técnicas.
+
+---
+
+### 🧾 8.6 Sustituir direcciones por nombres legibles
+
+Como hemos comentado, los ficheros CSV contienen **direcciones de wallet** en formato hexadecimal (`0x...`), lo que dificulta mucho su interpretación visual. Para solventar este problema, hemos creado un pequeño script que permite **reemplazar esas direcciones por nombres más comprensibles**.
+
+---
+
+### 🛠️ Script `reemplazarCSV.js`
+
+Este script se encarga de recorrer un fichero CSV y sustituir las direcciones de wallet por nombres amigables que nos ayuden a reconocer rápidamente a los actores principales del grafo.
+
+#### 📂 Ubicación y edición del script
+
+Abre el archivo `reemplazarCSV.js` y observa que contiene una estructura como esta:
+
+```js
+const replacements = {
+  "0xc383d4920a1ec3d415216c5f014de6ccf86e546c": "Diego",
+  "0xc0794fd43b99337cf5b513c656c854f6c3ce166a": "otro nombre",
+
+...
+```
+
+Este **diccionario de reemplazo** sirve para asignar un alias legible a cada dirección específica.
+
+---
+
+### 🎯 Objetivo
+
+Con este reemplazo, cuando visualicemos el grafo en R:
+
+* En lugar de ver `"0xc383d4920a1ec3d415216c5f014de6ccf86e546c"`, veremos `"Diego"`.
+* En lugar de ver `"0xA8101E39B81Cc29C3C4248cA8ffe9dF00355a620"`, veremos `"otro nombre"`.
+
+Esto **mejorará radicalmente la legibilidad del grafo** y nos permitirá centrar el análisis en las relaciones entre personas o entidades identificables.
+
+---
+
+
+### ✂️ 8.7 Eliminación de direcciones irrelevantes: el array `podar`
+
+Además del reemplazo de nombres, el script `reemplazarCSV.js` también incluye una funcionalidad adicional muy útil: **la poda de direcciones**.
+
+#### 🧹 ¿Qué es podar?
+
+La idea es eliminar del CSV aquellas direcciones que no forman parte de nuestra red de interés. Estas wallets pueden corresponder a contratos automáticos, faucets, exchanges o nodos externos que aparecen en las transacciones pero que **no tienen un rol relevante** en nuestro análisis.
+
+---
+
+#### 📁 El array `podar`
+
+Dentro del mismo fichero `reemplazarCSV.js`, encontrarás otro array con el siguiente formato:
+
+```js
+const podar = [
+  "0x00000000001594c61dd8a6804da9ab58ed2483ce",
+  "0x1234567890abcdef1234567890abcdef12345678",
+  // Puedes añadir aquí tantas direcciones como quieras eliminar
+];
+````
+
+Estas direcciones serán **eliminadas completamente del CSV** (tanto como origen como destino), de modo que **no aparecerán en el grafo final**.
+
+---
+
+### ⚙️ 8.8 Ejecución del script de limpieza y reemplazo
+
+Una vez configurados los arrays `replacements` y `podar` en el archivo `reemplazarCSV.js`, ya puedes ejecutar el script para aplicar los cambios sobre los ficheros CSV generados anteriormente.
+
+#### ▶️ Ejecutar el script
+
+Desde la terminal, simplemente ejecuta:
+
+```bash
+node reemplazarCSV.js
+```
+
+---
+
+### 💡 ¿Qué hace este comando?
+
+Este script:
+
+* Buscará los ficheros `grafo_numero_transacciones.csv` y `grafo_valor_transacciones.csv` en la carpeta `/data/`
+* Reemplazará automáticamente las direcciones incluidas en el array `replacements` por nombres legibles
+* Eliminará por completo todas las filas donde aparezca alguna de las direcciones indicadas en el array `podar`
+
+---
+
+### 🧪 8.9 Continuar el análisis en R
+
+Una vez limpiados y preparados los ficheros CSV, ya puedes **retomar el análisis del grafo** usando R, igual que hiciste con la red de personajes de *Star Wars*.
+
+#### 💻 Abrir RStudio
+
+Te recomendamos abrir **RStudio** como entorno de trabajo, ya que facilita mucho la gestión de scripts, gráficos y carga de datos.
+
+---
+
+### 📥 Cargar el nuevo grafo en R
+
+En lugar de cargar el fichero `sw_4.csv`, ahora probablemente quieras comenzar directamente con el grafo obtenido de la red de Sepolia. Para ello, puedes usar este comando:
+
+```r
+grafo_enCSV <- read.csv("data\\grafo_valor_transacciones.csv")
+```
+
+---
+
+### 🔄 Continuar con el análisis
+
+Desde aquí puedes **continuar el manual tal y como lo hiciste con el grafo de *Star Wars***:
+
+
+
+---
+
+### 🎉 ¡Todo listo!
+
+Ya tienes en tus manos un fragmento real de la red de transacciones de la blockchain Sepolia, limpio, renombrado y preparado para el análisis. Ahora es el momento de aplicar todo lo aprendido y **descubrir patrones, nodos relevantes y estructuras dentro del grafo**.
+
+---
+
+### 🍀 ¡Suerte y disfruta con el análisis!
+
+Explora, experimenta, visualiza... y, sobre todo, **diviértete investigando cómo fluye el valor en una red descentralizada real**.
+
+# ¡Que la fuerza (y R) te acompañen!
+
 
